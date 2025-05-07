@@ -23,3 +23,9 @@ export interface CannedResponsesState {
   byIds: KeyMap<CannedResponse>;
   allIds: string[];
 }
+
+export interface ResponsesCounts {
+  allCount: number;
+  sharedCount: number;
+  privateCount: number;
+}
