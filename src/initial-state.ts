@@ -1,4 +1,4 @@
-import { StoreState } from './store/selectors';
+import { StoreState } from './types/canned-responses';
 
 export const initialState: StoreState = {
   entities: {

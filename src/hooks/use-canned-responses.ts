@@ -1,9 +1,8 @@
 import { useState, type SetStateAction, type Dispatch } from 'react';
-import { useSelector } from 'react-redux';
 import type { CannedResponseFilterType } from '../types/filter-type';
 import { CannedResponse } from '../types/canned-responses';
-import { getCannedResponses } from '../store/selectors';
 import { privacyFilterCannedResponses } from './helpers/privacy-filter-canned-responses';
+import useCannedStore from '../store/canned-store';
 
 interface UseCannedResponses {
   cannedResponses: CannedResponse[];
@@ -19,7 +18,8 @@ const filteredAndSortedResponses = (responses: CannedResponse[], filter: CannedR
 
 export const useCannedResponses = (): UseCannedResponses => {
   const [filter, setFilter] = useState<CannedResponseFilterType>('all');
-  const items = Object.values(useSelector(getCannedResponses));
+  const byIds = useCannedStore((state) => state.byIds);
+  const items = Object.values(byIds);
   const isEmpty = items.length === 0;
 
   return {

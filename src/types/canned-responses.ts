@@ -1,3 +1,5 @@
+import { KeyMap } from './types';
+
 export interface CannedResponse {
   id: string;
   modificationTimestamp: number;
@@ -7,4 +9,17 @@ export interface CannedResponse {
   modifiedBy?: string;
   avatarUrl?: string;
   isPrivate?: boolean;
+}
+
+export interface EntitiesState {
+  cannedResponses: CannedResponsesState;
+}
+
+export interface StoreState {
+  entities: EntitiesState;
+}
+
+export interface CannedResponsesState {
+  byIds: KeyMap<CannedResponse>;
+  allIds: string[];
 }
