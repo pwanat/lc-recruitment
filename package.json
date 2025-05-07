@@ -14,6 +14,7 @@
     "@emotion/css": "^11.13.5",
     "@livechat/design-system-icons": "^2.15.0",
     "@livechat/design-system-react-components": "^2.15.2",
+    "date-fns": "^4.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.2.0",
