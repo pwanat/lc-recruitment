@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { memo, type FC } from 'react';
 import { cx } from '@emotion/css';
 import { ContentCopyFilled, DeleteFilled, EditFilled } from '@livechat/design-system-icons';
 import { Icon, Tooltip } from '@livechat/design-system-react-components';
@@ -11,12 +11,9 @@ import { FakeLink } from '../fake-link/FakeLink';
 import { AgentAvatar } from '../avatar/AgentAvatar';
 
 import * as styles from './styles';
-import useCannedStore from '../../store/canned-store';
-interface Props {
-  item: CannedResponse;
-}
+type Props = CannedResponse;
 
-export const CannedResponseItem: FC<Props> = ({ item }) => {
+export const CannedResponseItem = memo((item: Props) => {
   const {
     authorName,
     avatarUrl,
@@ -28,14 +25,10 @@ export const CannedResponseItem: FC<Props> = ({ item }) => {
     showConfirmOverlay,
     toggleFolded,
     justModified,
+    handleTagClick
   } = useCannedResponseItem({ item });
   const { id, isPrivate } = item;
-  const setSearchString = useCannedStore((state) => state.setSearchString);
-  
-  const handleTagClick = (tag: string) => {
-    setSearchString(tag);
-  };
-  
+   
   const userInfo = isPrivate ? (
     <div className={styles.modifiedText}>
       Private, {lastAction} {lastDate}
@@ -120,4 +113,12 @@ export const CannedResponseItem: FC<Props> = ({ item }) => {
       {showConfirmOverlay && <ConfirmationOverlay onCancelClick={() => {}} onConfirmClick={() => {}} />}
     </div>
   );
-};
+}, (prevProps, nextProps) => {
+  return (
+    prevProps.id === nextProps.id &&
+    prevProps.isPrivate === nextProps.isPrivate &&
+    prevProps.tags.join(',') === nextProps.tags.join(',') &&
+    prevProps.text === nextProps.text &&
+    prevProps.modificationTimestamp === nextProps.modificationTimestamp
+  );
+});

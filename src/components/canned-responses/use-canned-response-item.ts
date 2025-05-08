@@ -6,6 +6,7 @@ import { getExtractedText } from './helpers';
 import { DateFormat } from '../../constants/date-format';
 import useToggle from '../../hooks/use-toggle';
 import { CannedResponse } from '../../types/canned-responses';
+import useCannedStore from '../../store/canned-store';
 
 interface UseCannedResponseItemProps {
   item: CannedResponse;
@@ -24,6 +25,7 @@ interface UseCannedResponseItem {
   showConfirmOverlay: boolean;
   justModified: boolean;
   toggleFolded: () => void;
+  handleTagClick: (tag: string) => void;
 }
 
 const maxTextLength = 150;
@@ -38,12 +40,17 @@ export const useCannedResponseItem = ({ item }: UseCannedResponseItemProps): Use
   const foldButtonContent = isFolded ? 'Show more ' : 'Show less ';
   const foldButtonIcon = isFolded ? ChevronDown : ChevronUp;
   const content = isTextTooLong && isFolded ? getExtractedText(text, maxTextLength) : text;
+  const setSearchString = useCannedStore((state) => state.setSearchString);
+   
   const handleOnRemoveIconClick = (event: MouseEvent<HTMLButtonElement>): void => {
     event.stopPropagation();
     setShowConfirmOverlay(true);
   };
   const handleOnCancelClick = (): void => {
     setShowConfirmOverlay(false);
+  };
+  const handleTagClick = (tag: string) => {
+    setSearchString(tag);
   };
   const justModified = modificationTimestamp > new Date().getTime() - 5e3;
 
@@ -60,5 +67,6 @@ export const useCannedResponseItem = ({ item }: UseCannedResponseItemProps): Use
     showConfirmOverlay,
     toggleFolded,
     justModified,
+    handleTagClick
   };
 };

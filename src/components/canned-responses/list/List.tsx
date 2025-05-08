@@ -9,7 +9,7 @@ const List = memo(() => {
   return (
     <>
       {listItems.map((item) => (
-        <CannedResponseItem key={item.id} item={item} />
+        <CannedResponseItem key={item.id} {...item} />
       ))}
     </>
   );

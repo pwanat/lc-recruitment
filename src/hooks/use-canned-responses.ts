@@ -1,9 +1,8 @@
-import { useState, type SetStateAction, type Dispatch, useMemo, useEffect } from 'react';
+import { useMemo, useEffect } from 'react';
 import type { CannedResponseFilterType } from '../types/filter-type';
 import { CannedResponse, ResponsesCounts } from '../types/canned-responses';
 import { privacyFilterCannedResponses } from './helpers/privacy-filter-canned-responses';
 import useCannedStore from '../store/canned-store';
-import { useDebounce } from 'use-debounce';
 
 export interface UseCannedResponses {
   isEmpty: boolean;
@@ -33,7 +32,7 @@ export const useCannedResponses = (): UseCannedResponses => {
   const search = useCannedStore((state) => state.search);
   const setListItems = useCannedStore((state) => state.setListItems);
 
-  const searchedItems = useMemo(() => items.filter((item) => searchInItem(item, search)), [items, search]);
+  const searchedItems = useMemo(() => !search ? items : items.filter((item) => searchInItem(item, search)), [items, search]);
 
   const searchedItemsCounts = useMemo(
     () => ({
