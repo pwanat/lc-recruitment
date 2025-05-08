@@ -1,9 +1,9 @@
 import { SkeletonAvatar, SkeletonText } from '@livechat/design-system-react-components';
 
-import { AgentAvatar } from '../../../avatar/AgentAvatar';
-import useItemAuthor from '../use-item-author';
+import { AgentAvatar } from '../../avatar/AgentAvatar';
+import useItemAuthor from './use-item-author';
 
-import * as styles from '../../styles';
+import * as styles from '../styles';
 
 type Props = {
   id: string;
@@ -11,7 +11,7 @@ type Props = {
   lastDate: string;
 };
 
-const Author = ({ id, lastAction, lastDate }: Props) => {
+export const Author = ({ id, lastAction, lastDate }: Props) => {
   const { data, isLoading } = useItemAuthor(id);
   const authorName = data?.name ? `${data?.name.first} ${data?.name.last}` : 'Unknown';
   const avatarUrl = data?.picture.thumbnail;
@@ -37,5 +37,3 @@ const Author = ({ id, lastAction, lastDate }: Props) => {
     </div>
   );
 };
-
-export default Author;

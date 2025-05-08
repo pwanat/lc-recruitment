@@ -9,9 +9,9 @@ import { useCannedResponseItem } from './use-canned-response-item';
 import { CANNED_COPY_LABEL, CANNED_EDIT_LABEL, CANNED_REMOVE_LABEL } from '../constants';
 import { FakeLink } from '../../fake-link/FakeLink';
 import { ConfirmationOverlay } from '../ConfirmationOverlay';
-import Author from './author/Author';
 
 import * as styles from '../styles';
+import { Author } from './Author';
 
 type Props = CannedResponse;
 
