@@ -1,9 +1,9 @@
-import { CannedResponseItem } from '../CannedResponseItem';
 import useCannedStore from '../../../store/canned-store';
 import { memo, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 import * as styles from './styles';
+import { CannedResponseItem } from '../item/Item';
 
 const ESTIMATED_ITEM_HEIGHT = 170;
 

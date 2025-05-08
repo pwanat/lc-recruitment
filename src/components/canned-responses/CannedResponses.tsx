@@ -1,5 +1,5 @@
 import { EmptyState } from '../empty-state/EmptyState';
-import { useCannedResponses } from '../../hooks/use-canned-responses';
+import { useCannedResponses } from './use-canned-responses';
 import * as styles from './styles';
 import Filters from './filters/Filters';
 import List from './list/List';
