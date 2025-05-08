@@ -11,6 +11,7 @@ import { FakeLink } from '../fake-link/FakeLink';
 import { AgentAvatar } from '../avatar/AgentAvatar';
 
 import * as styles from './styles';
+import useCannedStore from '../../store/canned-store';
 interface Props {
   item: CannedResponse;
 }
@@ -29,7 +30,12 @@ export const CannedResponseItem: FC<Props> = ({ item }) => {
     justModified,
   } = useCannedResponseItem({ item });
   const { id, isPrivate } = item;
-
+  const setSearchString = useCannedStore((state) => state.setSearchString);
+  
+  const handleTagClick = (tag: string) => {
+    setSearchString(tag);
+  };
+  
   const userInfo = isPrivate ? (
     <div className={styles.modifiedText}>
       Private, {lastAction} {lastDate}
@@ -50,6 +56,8 @@ export const CannedResponseItem: FC<Props> = ({ item }) => {
                 className={cx(styles.sharedItemHandle, { [styles.privateItemHandle]: isPrivate })}
                 key={tag}
                 data-testid={tag}
+                onClick={() => handleTagClick(tag)}
+                role='button'
               >
                 {tag}
               </li>

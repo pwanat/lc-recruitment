@@ -211,6 +211,7 @@ export const privateItemHandle = css`
 
 export const sharedItemHandle = css`
   background-color: var(${DesignToken.SurfaceBasicDefault});
+  cursor: pointer;
 `;
 
 export const foldContent = css`

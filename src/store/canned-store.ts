@@ -4,6 +4,8 @@ import { initialState } from '../initial-state';
 import { CannedResponseFilterType } from '../types/filter-type';
 
 type BulkEditsStore = CannedResponsesState & {
+  searchString: string;
+  setSearchString: (searchString: string) => void;
   search: string; 
   setSearch: (search: string) => void;
   filter: CannedResponseFilterType;
@@ -13,6 +15,8 @@ type BulkEditsStore = CannedResponsesState & {
 };
 
 const useCannedStore = create<BulkEditsStore>((set, get) => ({
+  searchString: '',
+  setSearchString: (searchString: string) => set(() => ({ searchString: searchString })),
   byIds: initialState.entities.cannedResponses.byIds,
   allIds: initialState.entities.cannedResponses.allIds,
   search: '',

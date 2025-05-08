@@ -13,15 +13,18 @@ type Props = {
 };
 
 const Filters = ({searchedItemsCounts}: Props) => {
-  const [searchString, setSearchString] = useState('');
-  const [searchDebounced] = useDebounce(searchString, 300);
+  
+  const searchString = useCannedStore((state) => state.searchString);
+  const setSearchString = useCannedStore((state) => state.setSearchString);
   const setSearch = useCannedStore((state) => state.setSearch);
   const filter = useCannedStore((state) => state.filter);
   const setFilter = useCannedStore((state) => state.setFilter);
 
+  const [searchDebounced] = useDebounce(searchString, 300);
+
   useEffect(() => {
     setSearch(searchDebounced);
-  }, [searchDebounced]);
+  }, [searchDebounced, setSearch]);
 
   return (
     <div className={styles.actionBar}>
