@@ -1,5 +1,5 @@
 import useCannedStore from '../../../store/canned-store';
-import { memo, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 import * as styles from './styles';
@@ -21,6 +21,12 @@ const List = memo(() => {
   });
 
   const items = virtualizer.getVirtualItems();
+
+  // Scroll to the top when the list items are filtered
+  useEffect(() => {
+    virtualizer.scrollToIndex(0);
+  }, [listItems, virtualizer])
+  
 
   return (
     <div ref={parentRef} className={styles.virtualizerWrapper}>

@@ -152,3 +152,7 @@ Note: Please ensure your initial commit contains the unmodified codebase to help
 ## Further Improvements
 
 - Use css modules instead css in js to avoid calculating styles on render
+- Return the item author name and image along with the list response instead of separate request for each item
+- Add tests
+- Check accessibility
+- Improve RWD
