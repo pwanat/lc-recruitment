@@ -16,7 +16,6 @@ const highlight = keyframes`
 export const avatar = css`
   display: inline-block;
   vertical-align: middle;
-  margin-right: 8px;
   user-select: text;
 `;
 
@@ -237,3 +236,15 @@ export const iconButton = css`
   justify-content: center;
   align-items: center;
 `;
+
+export const author = css`
+  display: flex;
+`
+
+export const avatarContainer = css`
+  margin-right: 8px;
+`
+
+export const authorNameSkeleton = css`
+  margin: 4px;
+`
