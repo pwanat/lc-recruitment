@@ -24,6 +24,7 @@ interface UseCannedResponseItem {
   justModified: boolean;
   toggleFolded: () => void;
   handleTagClick: (tag: string) => void;
+  searchWords: string[];
 }
 
 const maxTextLength = 150;
@@ -39,6 +40,7 @@ export const useCannedResponseItem = ({ item }: UseCannedResponseItemProps): Use
   const foldButtonIcon = isFolded ? ChevronDown : ChevronUp;
   const content = isTextTooLong && isFolded ? getExtractedText(text, maxTextLength) : text;
   const setSearchString = useCannedStore((state) => state.setSearchString);
+  const search = useCannedStore((state) => state.search);
    
   const handleOnRemoveIconClick = (event: MouseEvent<HTMLButtonElement>): void => {
     event.stopPropagation();
@@ -63,6 +65,7 @@ export const useCannedResponseItem = ({ item }: UseCannedResponseItemProps): Use
     showConfirmOverlay,
     toggleFolded,
     justModified,
-    handleTagClick
+    handleTagClick,
+    searchWords: search.split(' ').filter((word) => word.length > 0),
   };
 };

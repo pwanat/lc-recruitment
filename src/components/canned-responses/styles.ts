@@ -248,3 +248,6 @@ export const avatarContainer = css`
 export const authorNameSkeleton = css`
   margin: 4px;
 `
+export const authorName = css`
+  margin-left: 4px;
+`

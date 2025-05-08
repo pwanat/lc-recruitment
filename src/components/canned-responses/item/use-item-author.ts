@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { ItemAuthor } from '../../../types/item-author';
 
-const getAuthorDataPath = 'https://randomuser.me/api/?seed=';
+const FIVE_MINUTES = 5 * 60 * 1000; // 5 minutes
 
-const getAuthorData = async (id: string): Promise<ItemAuthor> => {
+export const getAuthorDataPath = 'https://randomuser.me/api/?seed=';
+
+export const getAuthorData = async (id: string): Promise<ItemAuthor> => {
   const response = await fetch(`${getAuthorDataPath}${id}`);
   const data = await response.json();
   return data.results[0];
@@ -13,8 +15,8 @@ const useItemAuthor = (id: string) => {
   const { data, isError, isLoading } = useQuery({
     queryKey: [getAuthorDataPath, id],
     queryFn: () => getAuthorData(id),
-    staleTime: Infinity,
-    gcTime: 1000 * 60 * 5, // 5 minutes
+    staleTime: FIVE_MINUTES,
+    gcTime: FIVE_MINUTES,
   });
 
   return { data, isError, isLoading };

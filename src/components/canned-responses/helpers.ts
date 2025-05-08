@@ -1,5 +1,5 @@
-import { privacyFilterCannedResponses } from '../../hooks/helpers/privacy-filter-canned-responses';
-import { searchInString } from '../../hooks/helpers/search';
+import { privacyFilterCannedResponses } from '../../helpers/privacy-filter-canned-responses';
+import { searchInString } from '../../helpers/search';
 import { CannedResponse } from '../../types/canned-responses';
 import { CannedResponseFilterType } from '../../types/filter-type';
 

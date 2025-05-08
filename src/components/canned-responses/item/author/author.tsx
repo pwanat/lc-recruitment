@@ -1,9 +1,10 @@
 import { SkeletonAvatar, SkeletonText } from '@livechat/design-system-react-components';
+import { useMemo } from 'react';
+
 import { AgentAvatar } from '../../../avatar/AgentAvatar';
+import useItemAuthor from '../use-item-author';
 
 import * as styles from '../../styles';
-import useItemAuthor from '../use-item-author';
-import { useMemo } from 'react';
 
 type Props = {
   id: string;
@@ -12,7 +13,7 @@ type Props = {
 };
 
 const Author = ({ id, lastAction, lastDate }: Props) => {
-  const { data, isError, isLoading } = useItemAuthor(id);
+  const { data, isLoading } = useItemAuthor(id);
   const authorName = data?.name ? `${data?.name.first} ${data?.name.last}` : 'Unknown';
   const avatarUrl = useMemo(() => data?.picture.thumbnail, [data?.picture.thumbnail]);
 
@@ -25,7 +26,15 @@ const Author = ({ id, lastAction, lastDate }: Props) => {
           <AgentAvatar src={avatarUrl} size="xxsmall" className={styles.avatar} />
         )}
       </div>
-      {lastAction} by {isLoading ? <span className={styles.authorNameSkeleton}><SkeletonText width={100} /></span> : authorName}, {lastDate}
+      {lastAction} by
+      {isLoading ? (
+        <span className={styles.authorNameSkeleton}>
+          <SkeletonText width={100} />
+        </span>
+      ) : (
+        <span className={styles.authorName}>{authorName}</span>
+      )}
+      , {lastDate}
     </div>
   );
 };

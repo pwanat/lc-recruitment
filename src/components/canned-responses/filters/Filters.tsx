@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from 'react';
+import { useEffect } from 'react';
 import { SearchInput, SegmentedControl } from '@livechat/design-system-react-components';
 
 import * as styles from './styles';

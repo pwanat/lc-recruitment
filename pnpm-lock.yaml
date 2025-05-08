@@ -13,16 +13,19 @@ importers:
         version: 11.13.5
       '@livechat/design-system-icons':
         specifier: ^2.15.0
-        version: 2.27.0
+        version: 2.15.0
       '@livechat/design-system-react-components':
         specifier: ^2.15.2
-        version: 2.28.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.15.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-query':
         specifier: ^5.75.5
         version: 5.75.5(react@18.3.1)
       '@tanstack/react-virtual':
         specifier: ^3.13.8
         version: 3.13.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@types/react-highlight-words':
+        specifier: ^0.20.0
+        version: 0.20.0
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -32,6 +35,9 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-highlight-words:
+        specifier: ^0.21.0
+        version: 0.21.0(react@18.3.1)
       react-scan:
         specifier: ^0.3.3
         version: 0.3.3(@types/react@18.3.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.40.2)
@@ -613,11 +619,14 @@ packages:
   '@livechat/data-utils@0.2.17':
     resolution: {integrity: sha512-QbjW6D8AMm2VDGZJiYs5Cz3dMWOES8rQLLob6MLYwnZvBFqi6186sx2Ca+4o4DnRXCFiYZYJIYhwcgFcwbi+Kw==}
 
+  '@livechat/design-system-icons@2.15.0':
+    resolution: {integrity: sha512-Of7Ul4oxzvU85niab2S1m0xOE4QvCgpuWi/YSDVGplznEVwuF3SwkSgPTvVlAfMOMHCa5IDWCi2Q3LhG4vqeqQ==}
+
   '@livechat/design-system-icons@2.27.0':
     resolution: {integrity: sha512-+tjqv/ndxRPx1KUeH8k3inBklShQetzt81ejqIsAvOlRvXJeU9+x0KJ8knlTVuKLkcW6lThhY6LkaWjG7Llp4A==}
 
-  '@livechat/design-system-react-components@2.28.1':
-    resolution: {integrity: sha512-X7DJ8W1We1QhxTvoxAeRxazdrB3tsiLGMAf4ZJ7JeJUXAiWQxNZDd9MqH2YB3XH5xo1WsEWLetNQnTjPBQLwuA==}
+  '@livechat/design-system-react-components@2.15.2':
+    resolution: {integrity: sha512-CEwhcpvtW8ElJrDVllxyoFU89ZdAPc9vIfy8qS2h5Z+u7U2WH1zLpXDmkTgrvhpMzfdHZSGSBpcapRi10ZEJmQ==}
     peerDependencies:
       react: '>= 18.3.0'
       react-dom: '>= 18.3.0'
@@ -813,6 +822,9 @@ packages:
     resolution: {integrity: sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==}
     peerDependencies:
       '@types/react': ^18.0.0
+
+  '@types/react-highlight-words@0.20.0':
+    resolution: {integrity: sha512-Qm512TiOakvtNzHJ2+TNVHnLn5cJ2wLQV0+LrhuispVth6dRf5b8ydjq3Kc0thpZ7bz4s6RnG6meboAXHWRK+Q==}
 
   '@types/react-reconciler@0.28.9':
     resolution: {integrity: sha512-HHM3nxyUZ3zAylX8ZEyrDNd2XZOnQ0D5XfunJF5FLQnZbHHYq4UWvW1QfelQNXv1ICNkwYhfxjwfnqivYB6bFg==}
@@ -1312,6 +1324,9 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
+  highlight-words-core@1.2.3:
+    resolution: {integrity: sha512-m1O9HW3/GNHxzSIXWw1wCNXXsgLlxrP0OI6+ycGUhiUHkikqW3OrwVHz+lxeNBe5yqLESdIcj8PowHQ2zLvUvQ==}
+
   http-errors@2.0.0:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
     engines: {node: '>= 0.8'}
@@ -1434,6 +1449,9 @@ packages:
   media-typer@1.1.0:
     resolution: {integrity: sha512-aisnrDP4GNe06UcKFnV5bfMNPBUw4jsLGaWwWfnH3v02GnBuXX2MCVn5RbrWo0j3pczUilYblq7fQ7Nw2t5XKw==}
     engines: {node: '>= 0.8'}
+
+  memoize-one@4.0.3:
+    resolution: {integrity: sha512-QmpUu4KqDmX0plH4u+tf0riMc1KHE1+lw95cMrLlXQAFOx/xnBtwhZ52XJxd9X2O6kwKBqX32kmhbhlobD0cuw==}
 
   merge-descriptors@2.0.0:
     resolution: {integrity: sha512-Snk314V5ayFLhp3fkUREub6WtjBfPdCPY1Ln8/8munuLuiYhsABgBVWsozAG+MWMbVEvcdcpbi9R7ww22l9Q3g==}
@@ -1627,6 +1645,11 @@ packages:
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
       react: ^18.3.1
+
+  react-highlight-words@0.21.0:
+    resolution: {integrity: sha512-SdWEeU9fIINArEPO1rO5OxPyuhdEKZQhHzZZP1ie6UeXQf+CjycT1kWaB+9bwGcVbR0NowuHK3RqgqNg6bgBDQ==}
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -2399,9 +2422,11 @@ snapshots:
 
   '@livechat/data-utils@0.2.17': {}
 
+  '@livechat/design-system-icons@2.15.0': {}
+
   '@livechat/design-system-icons@2.27.0': {}
 
-  '@livechat/design-system-react-components@2.28.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@livechat/design-system-react-components@2.15.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/react': 0.26.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@livechat/data-utils': 0.2.17
@@ -2575,6 +2600,10 @@ snapshots:
   '@types/prop-types@15.7.14': {}
 
   '@types/react-dom@18.3.7(@types/react@18.3.21)':
+    dependencies:
+      '@types/react': 18.3.21
+
+  '@types/react-highlight-words@0.20.0':
     dependencies:
       '@types/react': 18.3.21
 
@@ -3180,6 +3209,8 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
+  highlight-words-core@1.2.3: {}
+
   http-errors@2.0.0:
     dependencies:
       depd: 2.0.0
@@ -3275,6 +3306,8 @@ snapshots:
   math-intrinsics@1.1.0: {}
 
   media-typer@1.1.0: {}
+
+  memoize-one@4.0.3: {}
 
   merge-descriptors@2.0.0: {}
 
@@ -3439,6 +3472,12 @@ snapshots:
       loose-envify: 1.4.0
       react: 18.3.1
       scheduler: 0.23.2
+
+  react-highlight-words@0.21.0(react@18.3.1):
+    dependencies:
+      highlight-words-core: 1.2.3
+      memoize-one: 4.0.3
+      react: 18.3.1
 
   react-is@16.13.1: {}
 

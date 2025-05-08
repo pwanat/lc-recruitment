@@ -8,9 +8,7 @@ import { CannedResponseItem } from '../item/Item';
 const ESTIMATED_ITEM_HEIGHT = 170;
 
 const List = memo(() => {
-  
-    const listItems = useCannedStore((state) => state.listItems);
-  console.log('rerender list items', listItems);
+  const listItems = useCannedStore((state) => state.listItems);
 
   const parentRef = useRef<HTMLDivElement>(null);
 

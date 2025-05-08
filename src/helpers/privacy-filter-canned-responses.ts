@@ -1,5 +1,5 @@
-import { CannedResponse } from '../../types/canned-responses';
-import { CannedResponseFilterType } from '../../types/filter-type';
+import { CannedResponse } from '../types/canned-responses';
+import { CannedResponseFilterType } from '../types/filter-type';
 
 export const privacyFilterCannedResponses = (
   cannedResponses: CannedResponse[],

@@ -3,6 +3,7 @@ import { css } from '@emotion/css';
 export const virtualizerWrapper = css`
     height: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
     contain: strict;
 `;
 

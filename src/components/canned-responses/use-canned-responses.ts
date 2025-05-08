@@ -1,17 +1,18 @@
 import { useMemo, useEffect } from 'react';
 import { ResponsesCounts } from '../../types/canned-responses';
-import { privacyFilterCannedResponses } from '../../hooks/helpers/privacy-filter-canned-responses';
+import { privacyFilterCannedResponses } from '../../helpers/privacy-filter-canned-responses';
 import useCannedStore from '../../store/canned-store';
 import { filteredAndSortedResponses, searchInItem } from './helpers';
+import { initialState } from '../../initial-state';
 
 export interface UseCannedResponses {
   isEmpty: boolean;
   searchedItemsCounts: ResponsesCounts;
 }
 
-export const useCannedResponses = (): UseCannedResponses => {
-  const items = Object.values(useCannedStore((state) => state.byIds));
+const items = Object.values(initialState.entities.cannedResponses.byIds);
 
+export const useCannedResponses = (): UseCannedResponses => {
   const filter = useCannedStore((state) => state.filter);
   const search = useCannedStore((state) => state.search);
   const setListItems = useCannedStore((state) => state.setListItems);
