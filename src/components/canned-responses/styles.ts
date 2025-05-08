@@ -177,7 +177,7 @@ export const wrapper = css`
 export const list = css`
   margin-top: 16px;
   position: relative;
-  height: 100%;
+  height: calc(100% - 82px);
   min-height: 400px;
   max-width: ${maxWidth};
 `;
