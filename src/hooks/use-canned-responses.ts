@@ -1,15 +1,13 @@
-import { useState, type SetStateAction, type Dispatch, useMemo } from 'react';
+import { useState, type SetStateAction, type Dispatch, useMemo, useEffect } from 'react';
 import type { CannedResponseFilterType } from '../types/filter-type';
 import { CannedResponse, ResponsesCounts } from '../types/canned-responses';
 import { privacyFilterCannedResponses } from './helpers/privacy-filter-canned-responses';
 import useCannedStore from '../store/canned-store';
+import { useDebounce } from 'use-debounce';
 
 export interface UseCannedResponses {
-  cannedResponses: CannedResponse[];
   isEmpty: boolean;
-  setFilter: Dispatch<SetStateAction<CannedResponseFilterType>>;
-  filter: CannedResponseFilterType;
-  filteredItemsCounts: ResponsesCounts;
+  searchedItemsCounts: ResponsesCounts;
 }
 
 const filteredAndSortedResponses = (responses: CannedResponse[], filter: CannedResponseFilterType): CannedResponse[] =>
@@ -17,29 +15,43 @@ const filteredAndSortedResponses = (responses: CannedResponse[], filter: CannedR
     (first, second) => second.modificationTimestamp - first.modificationTimestamp,
   );
 
+const searchInString = (item: string, search: string): boolean => {
+  return item.toLowerCase().includes(search.toLowerCase());
+};
+
+const searchInItem = (item: CannedResponse, search: string): boolean => {
+  if (!search) return true;
+  const { text, tags, createdBy } = item;
+  const searchSource = [text, ...tags, createdBy ?? ''].join(' ');
+  return searchInString(searchSource, search);
+};
+
 export const useCannedResponses = (): UseCannedResponses => {
-  const [filter, setFilter] = useState<CannedResponseFilterType>('all');
-  const byIds = useCannedStore((state) => state.byIds);
-  const items = Object.values(byIds);
-  const isEmpty = items.length === 0;
+  const items = Object.values(useCannedStore((state) => state.byIds));
+  
+  const filter = useCannedStore((state) => state.filter);
+  const search = useCannedStore((state) => state.search);
+  const setListItems = useCannedStore((state) => state.setListItems);
 
-  const itemsByCategory = useMemo(() => (isEmpty ? [] : filteredAndSortedResponses(items, filter)), [items, filter]);
-  const filteredItems = items; // TODO implement search
+  const searchedItems = useMemo(() => items.filter((item) => searchInItem(item, search)), [items, search]);
 
-  const filteredItemsCounts = useMemo(
+  const searchedItemsCounts = useMemo(
     () => ({
-      allCount: filteredItems.length,
-      sharedCount: privacyFilterCannedResponses(filteredItems, 'shared').length,
-      privateCount: privacyFilterCannedResponses(filteredItems, 'private').length,
+      allCount: searchedItems.length,
+      sharedCount: privacyFilterCannedResponses(searchedItems, 'shared').length,
+      privateCount: privacyFilterCannedResponses(searchedItems, 'private').length,
     }),
-    [filteredItems],
+    [searchedItems],
   );
 
+  const filteredItems = useMemo(() => searchedItems.length === 0 ? [] : filteredAndSortedResponses(searchedItems, filter), [searchedItems, filter]);
+
+  useEffect(() => {    
+    setListItems(filteredItems);
+  }, [filteredItems, setListItems])
+  
   return {
-    cannedResponses: itemsByCategory,
-    setFilter,
-    filter,
-    isEmpty,
-    filteredItemsCounts,
+    isEmpty: filteredItems.length === 0,
+    searchedItemsCounts,
   };
 };

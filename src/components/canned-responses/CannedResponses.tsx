@@ -1,51 +1,26 @@
-import { useState, type FC } from 'react';
-import { SearchInput, SegmentedControl } from '@livechat/design-system-react-components';
-import { CannedResponseItem } from './CannedResponseItem';
 import { EmptyState } from '../empty-state/EmptyState';
-import { CannedResponseFilterType } from '../../types/filter-type';
 import { useCannedResponses } from '../../hooks/use-canned-responses';
-import { getCannedResponsesButtons } from '../canned-responses-buttons/configuration';
 import * as styles from './styles';
+import Filters from './filters/Filters';
+import List from './list/List';
 
-export const CannedResponses: FC = () => {
-  const { cannedResponses, setFilter, filter, isEmpty, filteredItemsCounts } = useCannedResponses();
-  console.log("🚀 ~ filteredItemsCounts:", filteredItemsCounts)
-  const [search, setSearch] = useState('');
+export const CannedResponses = () => {
+  const { isEmpty, searchedItemsCounts } = useCannedResponses();
 
   return (
     <div className={styles.wrapper}>
-      {!isEmpty && (
-          <div className={styles.actionBar}>
-            <div className={styles.barContainer}>
-                <div className={styles.segmentedControllButtonTopSpace}></div>
-                <SegmentedControl
-                  initialId="all"
-                  currentId={filter}
-                  className={styles.segmentedControlButton}
-                  buttons={getCannedResponsesButtons(filteredItemsCounts)}
-                  onButtonClick={(id) => setFilter(id as CannedResponseFilterType)}
-                />
-            </div>
-            <SearchInput onChange={setSearch} value={search} className={styles.searchBar} />
-          </div>
-      )}
+      <Filters searchedItemsCounts={searchedItemsCounts} />
 
       <div className={styles.list}>
-        {isEmpty && (
+        {isEmpty ? (
           <EmptyState
             icon={true}
             title="No canned responses"
             description="Save frequently used responses under a simple shortcut"
             className={styles.emptyState}
           />
-        )}
-
-        {!isEmpty && (
-          <>
-            {cannedResponses.map((item) => (
-              <CannedResponseItem key={item.id} item={item} />
-            ))}
-          </>
+        ) : (
+          <List />
         )}
       </div>
     </div>

@@ -20,28 +20,6 @@ export const avatar = css`
   user-select: text;
 `;
 
-export const actionBar = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 32px;
-  max-width: ${maxWidth};
-
-  .lc-search-bar__container {
-    height: 36px;
-  }
-`;
-
-export const barContainer = css`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const searchBar = css`
-  align-self: flex-end;
-  max-width: 250px;
-`;
-
 export const item = css`
   position: relative;
   padding: 16px 18px 0 18px;
@@ -182,9 +160,7 @@ export const tags = css`
 `;
 
 export const wrapper = css`
-  &.fullHeight {
-    height: calc(100vh - 189px);
-  }
+  height: calc(100vh - 189px);
 
   &,
   & > div > div {
@@ -235,18 +211,6 @@ export const privateItemHandle = css`
 
 export const sharedItemHandle = css`
   background-color: var(${DesignToken.SurfaceBasicDefault});
-`;
-
-export const segmentedControlButton = css`
-  box-sizing: border-box;
-
-  button:focus {
-    box-shadow: none;
-  }
-`;
-
-export const segmentedControllButtonTopSpace = css`
-  height: 32px;
 `;
 
 export const foldContent = css`
