@@ -10,8 +10,8 @@ import { CANNED_COPY_LABEL, CANNED_EDIT_LABEL, CANNED_REMOVE_LABEL } from '../co
 import { FakeLink } from '../../fake-link/FakeLink';
 import { ConfirmationOverlay } from '../ConfirmationOverlay';
 
-import * as styles from '../styles';
-import { Author } from './Author';
+import * as styles from './styles';
+import { Author } from '../author/Author';
 
 type Props = CannedResponse;
 
@@ -42,7 +42,6 @@ export const CannedResponseItem = memo(
                   key={tag}
                   data-testid={tag}
                   onClick={() => handleTagClick(tag)}
-                  role="button"
                 >
                   <Highlighter searchWords={searchWords} autoEscape={true} textToHighlight={tag} />
                 </li>

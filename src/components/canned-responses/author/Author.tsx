@@ -1,9 +1,9 @@
 import { SkeletonAvatar, SkeletonText } from '@livechat/design-system-react-components';
 
 import { AgentAvatar } from '../../avatar/AgentAvatar';
-import useItemAuthor from './use-item-author';
+import useItemAuthor from '../item/use-item-author';
 
-import * as styles from '../styles';
+import * as styles from './styles';
 
 type Props = {
   id: string;
@@ -22,7 +22,7 @@ export const Author = ({ id, lastAction, lastDate }: Props) => {
         {isLoading ? (
           <SkeletonAvatar size={20} />
         ) : (
-          <AgentAvatar src={avatarUrl} size="xxsmall" className={styles.avatar} />
+          <AgentAvatar src={avatarUrl} size="xxsmall" className={styles.avatar} alt={`Profile picture of ${authorName}`}/>
         )}
       </div>
       {lastAction} by
