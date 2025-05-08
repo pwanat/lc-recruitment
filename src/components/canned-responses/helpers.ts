@@ -22,14 +22,13 @@ export const filteredAndSortedResponses = (
 export const searchInItem = (item: CannedResponse, search: string): boolean => {
   if (!search) return true;
 
-  const { text, tags, createdBy } = item;
+  const { text, tags } = item;
   const searchWords = search.trim().toLowerCase().split(/\s+/);
 
   const isMatched = searchWords.some((word) => {
     const isInText = searchInString(text, word);
     const isInTags = tags.some((tag) => searchInString(tag, word));
-    const isInCreatedBy = createdBy ? searchInString(createdBy, word) : false;
-    return isInText || isInTags || isInCreatedBy;
+    return isInText || isInTags;
   });
   return isMatched;
 };
