@@ -6,7 +6,7 @@ import { CannedResponseFilterType } from '../types/filter-type';
 type BulkEditsStore = {
   searchString: string;
   setSearchString: (searchString: string) => void;
-  search: string; 
+  search: string;
   setSearch: (search: string) => void;
   filter: CannedResponseFilterType;
   setFilter: (filter: CannedResponseFilterType) => void;

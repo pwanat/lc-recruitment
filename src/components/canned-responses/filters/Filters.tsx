@@ -9,11 +9,10 @@ import { getCannedResponsesButtons } from '../../canned-responses-buttons/config
 import { ResponsesCounts } from '../../../types/canned-responses';
 
 type Props = {
-  searchedItemsCounts: ResponsesCounts
+  searchedItemsCounts: ResponsesCounts;
 };
 
-const Filters = ({searchedItemsCounts}: Props) => {
-  
+const Filters = ({ searchedItemsCounts }: Props) => {
   const searchString = useCannedStore((state) => state.searchString);
   const setSearchString = useCannedStore((state) => state.setSearchString);
   const setSearch = useCannedStore((state) => state.setSearch);

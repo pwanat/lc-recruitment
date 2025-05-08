@@ -41,7 +41,7 @@ export const useCannedResponseItem = ({ item }: UseCannedResponseItemProps): Use
   const content = isTextTooLong && isFolded ? getExtractedText(text, maxTextLength) : text;
   const setSearchString = useCannedStore((state) => state.setSearchString);
   const search = useCannedStore((state) => state.search);
-   
+
   const handleOnRemoveIconClick = (event: MouseEvent<HTMLButtonElement>): void => {
     event.stopPropagation();
     setShowConfirmOverlay(true);

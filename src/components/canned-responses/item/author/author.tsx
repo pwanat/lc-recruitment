@@ -1,5 +1,4 @@
 import { SkeletonAvatar, SkeletonText } from '@livechat/design-system-react-components';
-import { useMemo } from 'react';
 
 import { AgentAvatar } from '../../../avatar/AgentAvatar';
 import useItemAuthor from '../use-item-author';
@@ -15,7 +14,7 @@ type Props = {
 const Author = ({ id, lastAction, lastDate }: Props) => {
   const { data, isLoading } = useItemAuthor(id);
   const authorName = data?.name ? `${data?.name.first} ${data?.name.last}` : 'Unknown';
-  const avatarUrl = useMemo(() => data?.picture.thumbnail, [data?.picture.thumbnail]);
+  const avatarUrl = data?.picture.thumbnail;
 
   return (
     <div className={styles.author}>

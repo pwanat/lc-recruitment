@@ -17,10 +17,7 @@ export const useCannedResponses = (): UseCannedResponses => {
   const search = useCannedStore((state) => state.search);
   const setListItems = useCannedStore((state) => state.setListItems);
 
-  const searchedItems = useMemo(
-    () => (!search ? items : items.filter((item) => searchInItem(item, search))),
-    [items, search],
-  );
+  const searchedItems = useMemo(() => (!search ? items : items.filter((item) => searchInItem(item, search))), [search]);
 
   const searchedItemsCounts = useMemo(
     () => ({

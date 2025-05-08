@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { cx } from '@emotion/css';
 import { ContentCopyFilled, DeleteFilled, EditFilled } from '@livechat/design-system-icons';
 import { Icon, Tooltip } from '@livechat/design-system-react-components';
-import Highlighter from "react-highlight-words";
+import Highlighter from 'react-highlight-words';
 
 import { CannedResponse } from '../../../types/canned-responses';
 import { useCannedResponseItem } from './use-canned-response-item';
@@ -27,7 +27,7 @@ export const CannedResponseItem = memo(
       toggleFolded,
       justModified,
       handleTagClick,
-      searchWords
+      searchWords,
     } = useCannedResponseItem({ item });
     const { id, isPrivate } = item;
 
@@ -89,11 +89,7 @@ export const CannedResponseItem = memo(
         </div>
 
         <div data-testid="canned-message" className={cx({ [styles.content]: false })}>
-          <Highlighter
-            searchWords={searchWords}
-            autoEscape={true}
-            textToHighlight={content}
-          />
+          <Highlighter searchWords={searchWords} autoEscape={true} textToHighlight={content} />
         </div>
 
         <div className={styles.footer}>
